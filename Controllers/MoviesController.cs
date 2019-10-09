@@ -16,20 +16,19 @@ namespace MovieProjectRemade.Controllers
             context = new ApplicationDbContext();
         }
         // GET: api/Movies
-        public IEnumerable<string[]> Get()
+        public IEnumerable<Movie> Get()
         {
-            List<Movie> MovieList = context.Movies.ToList();
-            foreach (Movie movie in MovieList)
-            {
-                yield return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
-            }
+            return context.Movies.ToList();
+            //foreach (Movie movie in MovieList)
+            //{
+            //    yield return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
+            //}
         }
 
         // GET: api/Movies/5
-        public string[] Get(int id)
+        public Movie Get(int id)
         {
-            var movie = context.Movies.Where(m => m.Id == id).SingleOrDefault();
-            return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
+            return context.Movies.Where(m => m.Id == id).SingleOrDefault();
         }
 
         // POST: api/Movies
