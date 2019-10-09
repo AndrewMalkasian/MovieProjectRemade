@@ -1,4 +1,5 @@
 ﻿using MovieProjectRemade.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,21 +34,28 @@ namespace MovieProjectRemade.Controllers
         }
 
         // POST: api/Movies
-        public void Post([FromBody]string value)
+        public object Post([FromBody]string jsonString)
         {
-
+            var myJsonObj = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(jsonString);
+            // value1 is myJsonObj[key1]
+            var valueOfkey1 = myJsonObj["key1"];
+            return myJsonObj;
         }
 
         // PUT: api/Movies/5
         public void Put(int id, [FromBody]string value)
         {
-
+            var movie = context.Movies.Where(m => m.Id == id).SingleOrDefault();
+            movie.Title = value;
+            movie.Genre = value;
+            movie.DirectorName = value;
+            context.SaveChanges();
         }
 
         // DELETE: api/Movies/5
         public void Delete(int id)
         {
-
+            
         }
     }
 }
