@@ -29,15 +29,19 @@
 function submitForm(){
 
   let newMovie = {
-    title : document.getElementById('movie-title').value, 
-    genre : document.getElementById('movie-genre').value,
-    director : document.getElementById('movie-director').value 
+    Title : document.getElementById('movie-title').value, 
+    Genre : document.getElementById('movie-genre').value,
+    Director : document.getElementById('movie-director').value 
   }
-  
+
+  let testView = JSON.stringify(newMovie);
+  console.log(testView);
+  $('#response pre').html(testView);
+
   $.ajax({
     url: 'https://localhost:44384/api/movies',
-    dataType: 'json',
     type: 'post',
+    dataType: 'json',
     contentType: 'application/json',
     data: JSON.stringify(newMovie),
     success: function( data, textStatus, jQxhr ){
@@ -48,5 +52,5 @@ function submitForm(){
       console.log('FAIL FAIL FAIL');
       console.log( errorThrown );
     }
-  })
+  });
 }
