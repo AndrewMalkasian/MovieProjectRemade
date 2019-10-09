@@ -33,10 +33,6 @@ function submitForm(){
     DirectorName : document.getElementById('movie-director').value 
   }
 
-  let testView = JSON.stringify(newMovie);
-  console.log(testView);
-  $('#response pre').html(testView);
-
   $.ajax({
     url: 'https://localhost:44384/api/movies',
     type: 'post',
@@ -44,11 +40,9 @@ function submitForm(){
     contentType: 'application/json',
     data: JSON.stringify(newMovie),
     success: function( data, textStatus, jQxhr ){
-      console.log('SUCCESSSSSS');
-      $('#response pre').html( data );
+      $('#response pre').html( JSON.stringify(newMovie) );
     },
     error: function( jqXhr, textStatus, errorThrown ){
-      console.log('FAIL FAIL FAIL');
       console.log( errorThrown );
     }
   });
@@ -56,17 +50,32 @@ function submitForm(){
   // .Append($('#response pre'))
 }
 
-// $.ajax({
-//   url: 'https://localhost:44384/api/movies',
-//   type: 'get',
-//   dataType: 'json',
-//   contentType: 'application/json',
-//   data: MediaError
-// }).then(function(){
+function genericFunction(){
+  let returnedList = [];
+  $.ajax({
+    url: 'https://localhost:44384/api/movies',
+    type: 'get',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(data, textStatus, jQxhr){
+      $(data).each(function(){
+        for(i = 0; i < data.length; i++){
+          returnedList[i] = data[i];
+        }
+      })
+    },
+    error: function(){
+      console.log('ERRRORRRRR');
+    }
+  })
+  console.log(returnedList);
+  // $('#movie-table').html()
+}
+
+
+// .then(function(){
 //   for(i = 0; i < data.Length(); i++){
 //     this.Title = data[i][0];
 //     this.Genre = data[i][1];
 //     this.DirectorName = data[i][2]
 //   }
-// })
-// $('#movie-table').html(<tr><td></td></tr>)
