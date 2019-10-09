@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieProjectRemade.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +10,44 @@ namespace MovieProjectRemade.Controllers
 {
     public class MoviesController : ApiController
     {
-        // GET: api/Movies
-        public IEnumerable<string> Get()
+        private ApplicationDbContext context;
+        public MoviesController()
         {
-            return new string[] { "value1", "value2" };
+            context = new ApplicationDbContext();
+        }
+        // GET: api/Movies
+        public IEnumerable<string[]> Get()
+        {
+            List<Movie> MovieList = context.Movies.ToList();
+            foreach (Movie movie in MovieList)
+            {
+                yield return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
+            }
         }
 
         // GET: api/Movies/5
-        public string Get(int id)
+        public string[] Get(int id)
         {
-            return "value";
+            var movie = context.Movies.Where(m => m.Id == id).SingleOrDefault();
+            return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
         }
 
         // POST: api/Movies
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/Movies/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/Movies/5
         public void Delete(int id)
         {
+
         }
     }
 }
