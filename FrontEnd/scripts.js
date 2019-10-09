@@ -27,10 +27,11 @@
 // })(jQuery);
 // END PROVIDED DEMO CODE
 function submitForm(){
+
   let newMovie = {
-    title : this["title"].value, 
-    genre : this["genre"].value,
-    director : this["director"].value 
+    title : document.getElementById('movie-title').value, 
+    genre : document.getElementById('movie-genre').value,
+    director : document.getElementById('movie-director').value 
   }
   
   $.ajax({
@@ -40,10 +41,11 @@ function submitForm(){
     contentType: 'application/json',
     data: JSON.stringify(newMovie),
     success: function( data, textStatus, jQxhr ){
-      Console.Log('SUCCESSSSSS');
-      // $('#response pre').html( data );
+      console.log('SUCCESSSSSS');
+      $('#response pre').html( data );
     },
     error: function( jqXhr, textStatus, errorThrown ){
+      console.log('FAIL FAIL FAIL');
       console.log( errorThrown );
     }
   })
