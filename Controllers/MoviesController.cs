@@ -43,6 +43,7 @@ namespace MovieProjectRemade.Controllers
             context.Movies.Add(AddedMovie);
             context.SaveChanges();
         }
+
         // PUT: api/Movies/5
         public void Put(int id, [FromBody]string value)
         {
