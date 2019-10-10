@@ -17,20 +17,22 @@
     <div class="container">
 
       <div class="row">
-        <div class="input-field col m4">
+        <div class="input-field col m3">
           <input id ="movie-title" type="text"/>
           <label for="movie-title">Name of Movie</label>
         </div>
-        <div class="input-field col m4">
+        <div class="input-field col m3">
           <input id="movie-genre" type="text"/>
           <label for="movie-genre">Genre of Movie</label>
         </div>
-        <div class="input-field col m4">
+        <div class="input-field col m3">
           <input id="movie-director" type="text"/>
           <label for="movie-director">Director of Movie</label>
         </div>
+        <div class="input-field col m3">
+          <button class="btn" onclick="submitForm()">Submit Movie</button>
+        </div>
       </div>
-      <button class="btn" onclick="submitForm()">Submit Movie</button>
       
       <table>
         <thead>
@@ -38,6 +40,7 @@
             <th>Title</th>
             <th>Genre</th>
             <th>Director</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="movie-table">

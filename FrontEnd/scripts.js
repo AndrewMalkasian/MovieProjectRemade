@@ -37,11 +37,10 @@ function getMovieList(){
         }
       })
     },
-    error: function(){
-      console.log('ERRRORRRRR');
+    error: function(jqXhr, textStatus, errorThrown){
+      console.log(errorThrown);
     }
   })
-  console.log(returnedList);
 }
 
 function updateMovie(){
