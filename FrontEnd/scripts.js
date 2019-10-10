@@ -1,30 +1,3 @@
-// PROVIDED DEMO CODE
-// (function($){
-//   function processForm( e ){
-//       var dict = {
-//         Title : this["title"].value,
-//         Director: this["director"].value
-//       };
-
-//       $.ajax({
-//           url: 'https://localhost:44352/api/movie',
-//           dataType: 'json',
-//           type: 'post',
-//           contentType: 'application/json',
-//           data: JSON.stringify(dict),
-//           success: function( data, textStatus, jQxhr ){
-//               $('#response pre').html( data );
-//           },
-//           error: function( jqXhr, textStatus, errorThrown ){
-//               console.log( errorThrown );
-//           }
-//       });
-
-//       e.preventDefault();
-//   }
-//   $('#my-form').submit( processForm );
-// })(jQuery);
-// END PROVIDED DEMO CODE
 function submitForm(){
 
   let newMovie = {
@@ -46,11 +19,9 @@ function submitForm(){
       console.log( errorThrown );
     }
   });
-  // $('#response pre').Append(newMovie)
-  // .Append($('#response pre'))
 }
 
-function genericFunction(){
+function getMovieList(){
   let returnedList = [];
   $.ajax({
     url: 'https://localhost:44384/api/movies',
@@ -58,9 +29,10 @@ function genericFunction(){
     dataType: 'json',
     contentType: 'application/json',
     success: function(data, textStatus, jQxhr){
-      $(data).each(function(){
+      $('#movie-table').each(function(){
         for(i = 0; i < data.length; i++){
           returnedList[i] = data[i];
+          $('#movie-table').append("<tr><td>" + returnedList[i].Title +"</td><td>" + returnedList[i].Genre + "</td><td>" + returnedList[i].DirectorName + "</td><td><a href='#' onclick='getMovieList()'><button class='btn-small'>Update Entry</button></a></td></tr>");
         }
       })
     },
@@ -69,13 +41,4 @@ function genericFunction(){
     }
   })
   console.log(returnedList);
-  // $('#movie-table').html()
 }
-
-
-// .then(function(){
-//   for(i = 0; i < data.Length(); i++){
-//     this.Title = data[i][0];
-//     this.Genre = data[i][1];
-//     this.DirectorName = data[i][2]
-//   }

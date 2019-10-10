@@ -18,7 +18,7 @@ namespace MovieProjectRemade.Controllers
         // GET: api/Movies
         public IEnumerable<Movie> Get()
         {
-            return context.Movies.ToList();
+            return context.Movies.ToArray();
             //foreach (Movie movie in MovieList)
             //{
             //    yield return new string[] { $"{movie.Title}", $"{movie.Genre}", $"{movie.DirectorName}" };
