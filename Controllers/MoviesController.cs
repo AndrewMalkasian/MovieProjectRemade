@@ -40,13 +40,19 @@ namespace MovieProjectRemade.Controllers
         }
 
         // PUT: api/Movies/5
-        public void Put(int id, [FromBody]string value)
+        public Movie Put(int id, [FromBody]Movie movie)
         {
-            var movie = context.Movies.Where(m => m.Id == id).SingleOrDefault();
-            movie.Title = value;
-            movie.Genre = value;
-            movie.DirectorName = value;
+         
+            var editMovie = context.Movies.Where(m => m.Id == id).SingleOrDefault();
+            if (editMovie is null || movie is null)
+            {
+                return null;
+            }
+            editMovie.Title = movie.Title;
+            editMovie.Genre = movie.Genre;
+            editMovie.DirectorName = movie.DirectorName;
             context.SaveChanges();
+            return editMovie;
         }
 
         // DELETE: api/Movies/5
