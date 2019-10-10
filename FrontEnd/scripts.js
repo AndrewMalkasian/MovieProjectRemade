@@ -3,7 +3,7 @@ function submitForm(){
   let newMovie = {
     Title : document.getElementById('movie-title').value, 
     Genre : document.getElementById('movie-genre').value,
-    DirectorName : document.getElementById('movie-director').value 
+    DirectorName : document.getElementById('movie-director').value,
   }
 
   $.ajax({
@@ -13,7 +13,7 @@ function submitForm(){
     contentType: 'application/json',
     data: JSON.stringify(newMovie),
     success: function( data, textStatus, jQxhr ){
-      $('#movie-table').prepend( "<tr><td>" + newMovie.Title +"</td><td>" + newMovie.Genre + "</td><td>" + newMovie.DirectorName + "</td><td><a href='#' onclick='getMovieList()'><button class='btn-small'>Update Entry</button></a></td></tr>" );
+      $('#movie-table').prepend( "<tr><td>" + newMovie.Id + "</td><td>" + newMovie.Title +"</td><td>" + newMovie.Genre + "</td><td>" + newMovie.DirectorName + "</td><td><a href='#' onclick='getMovieList()'><button class='btn-small'>Update Entry</button></a></td></tr>" );
       alert('movie successfully added');
     },
     error: function( jqXhr, textStatus, errorThrown ){
@@ -33,7 +33,7 @@ function getMovieList(){
       $('#movie-table').each(function(){
         for(i = 0; i < data.length; i++){
           returnedList[i] = data[i];
-          $('#movie-table').append("<tr><td>" + returnedList[i].Title +"</td><td>" + returnedList[i].Genre + "</td><td>" + returnedList[i].DirectorName + "</td><td><a href='#' onclick='getMovieList()'><button class='btn-small'>Update Entry</button></a></td></tr>");
+          $('#movie-table').append("<tr><td>" + returnedList[i].Id + "</td><td>" + returnedList[i].Title +"</td><td>" + returnedList[i].Genre + "</td><td>" + returnedList[i].DirectorName + "</td><td><a href='#' onclick='getMovieList()'><button class='btn-small'>Update Entry</button></a></td></tr>");
         }
       })
     },
