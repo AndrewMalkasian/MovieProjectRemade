@@ -21,6 +21,7 @@
         <h2>Movie Library Project</h2>
         <h5>Created by Andrew Malkasian, Jake Gambino</h5>
       </div>
+
       <div class="row">
         <div class="input-field col m3">
           <input id ="movie-title" class="movie-input" type="text"/>
@@ -38,17 +39,15 @@
           <button class="btn red">Update Entry</button>
         </div>
         <div id="submit-new-movie" class="input-field col m3">
-          <a class="btn-floating btn-large" onclick="addMovie()"><i class="material-icons">add</i></a>
+          <a class="btn-floating btn-large" for="movie-submission" onclick="addMovie()"><i class="material-icons">add</i></a>
         </div>
       </div>
-      
       <table>
         <thead>
           <tr>
             <th>Title</th>
             <th>Genre</th>
             <th>Director</th>
-            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -59,13 +58,7 @@
             </td> -->
         </tbody>
       </table>
-      <!-- <div class="center">
-        <button class="btn-large" onclick ="getMovieList()">GetMovieList</button>
-      </div> -->
     </div>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

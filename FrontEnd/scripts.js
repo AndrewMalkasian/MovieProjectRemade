@@ -1,26 +1,27 @@
 function addMovie(){
-
   let newMovie = {
     Title : document.getElementById('movie-title').value, 
     Genre : document.getElementById('movie-genre').value,
     DirectorName : document.getElementById('movie-director').value,
   }
-
+  
   $.ajax({
     url: 'https://localhost:44384/api/movies',
     type: 'post',
-    dataType: 'json',
-    contentType: 'application/json',
-    data: JSON.stringify(newMovie),
-    success: function( data, textStatus, jQxhr ){
-      console.log('successfully added');
-    },
-    error: function( jqXhr, textStatus, errorThrown ){
-      console.log( errorThrown );
-    }
+  dataType: 'json',
+  contentType: 'application/json',
+  data: JSON.stringify(newMovie),
+  success: function( data, textStatus, jQxhr ){
+    console.log('successfully added');
+    getMovieList();
+  },
+  error: function( jqXhr, textStatus, errorThrown ){
+    console.log( errorThrown );
+  }
   });
-  clearDataField();
+  resetFields();
 }
+
 
 function getMovieList(){
   let returnedList = [];
@@ -59,12 +60,13 @@ function deleteMovie(id){
     contentType: 'application/json',
     success: function( data, textStatus, jQxhr ){
       console.log('deleted');
+      getMovieList();
     },
     error: function( jqXhr, textStatus, errorThrown ){
       console.log( errorThrown );
     }
   });
-  clearDataField();
+  resetFields();
 }
 
 function retrieveIndividualMovie(id){
@@ -87,8 +89,7 @@ function retrieveIndividualMovie(id){
     error: function(jqXhr, textStatus, errorThrown){
       console.log(errorThrown);
     }
-  })
-  clearDataField();
+  });
 }
 
 function updateMovie(id){
@@ -107,20 +108,20 @@ function updateMovie(id){
     data: JSON.stringify(updatedMovie),
     success: function( data, textStatus, jQxhr ){
       console.log('success');
+      getMovieList();
     },
     error: function(jqXhr, textStatus, errorThrown){
       console.log(errorThrown);
     }
   });
-  clearDataField();
+  resetFields();
 }
 
-function clearDataField(){
-  $('.movie-input').val('');
+function resetFields(){
+  $('.movie-input').val('').delay(800);
   $('.movie-input').next('label').removeClass('active');
-  $('#submit-new-movie').removeClass('hide');
   $('#movie-table').empty();
-  getMovieList();
+  $('#submit-new-movie').removeClass('hide');
 }
 
 $(document).ready(getMovieList());
