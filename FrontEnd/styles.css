@@ -2,3 +2,6 @@ td {
   color: blue;
   font-weight: bold;
 }
+.btn-float {
+  margin-left: 10px;
+}
